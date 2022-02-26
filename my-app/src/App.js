@@ -1,14 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+import questions from './questions.js';
 
 class App extends React.Component{
+  questionIndex = null;
   constructor(props) {
     super(props);
     this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.startQuiz = this.startQuiz.bind(this);
+    //this.startQuiz = this.startQuiz.bind(this);
+    /*this.nextQuestion = this.nextQuestion.bind(this);
+    this.showQuestion = this.showQuestion.bind(this);*/
   }
   startQuiz(e){
     console.log("start");
@@ -16,6 +20,7 @@ class App extends React.Component{
     const quizContainer = document.getElementById('quiz-container');
     startButton.classList.add("hide");
     quizContainer.classList.remove("hide");
+    questionIndex = 0;
   }
   handleChange(event) {    this.setState({value: event.target.value});  }
   handleSubmit(event) {
@@ -46,11 +51,33 @@ class App extends React.Component{
             </form>
         </div>
         <div class = "start">
-            <button id = "start-button" onClick = {this.startQuiz} class = "start-button">Start</button>
+            <button id = "start-button" onClick = {begin}  class = "start-button">Start</button>
         </div>
     </div>
     );
   }
+}
+let questionIndex;
+function nextQuestion(){
+    console.log(questions[questionIndex]);
+    showQuestion(questions[questionIndex]);
+    questionIndex++;
+  }
+function showQuestion(question){
+    const questionText = document.getElementById('question');
+    questionText.innerText = question.question;
+}
+function startQuiz(){
+    console.log("start");
+    const startButton = document.getElementById('start-button');
+    const quizContainer = document.getElementById('quiz-container');
+    startButton.classList.add("hide");
+    quizContainer.classList.remove("hide");
+    questionIndex = 0;
+  }
+function begin(){
+    startQuiz();
+    nextQuestion();
 }
 export default App;
 /*<link href = "App.css" rel = "stylesheet"/>
