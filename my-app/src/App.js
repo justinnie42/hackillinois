@@ -36,16 +36,16 @@ class App extends React.Component{
         </h1>
         <div id = "quiz-container" class = "hide">
             <div id = "question">Question</div><br></br>
-            <form>
-            <input type = "radio" name = "interest_value" id = "interest1"/>
+            <form onSubmit={this.handleSubmit}>
+            <input type = "radio" name = "interest_value" id = "interest1" value="Highly Interested" onChange={this.handleChange}/>
             <label for="interest1">Highly Interested</label><br></br>
-            <input type = "radio" name = "interest_value" id = "interest2"/>
+            <input type = "radio" name = "interest_value" id = "interest2" value = "Somewhat Interested"onChange={this.handleChange}/>
             <label for="interest2">Somewhat Interested</label><br></br>
-            <input type = "radio" name = "interest_value" id = "interest3"/>
+            <input type = "radio" name = "interest_value" id = "interest3" value="Neutral" onChange={this.handleChange}/>
             <label for="interest3">Neutral</label><br></br>
-            <input type = "radio" name = "interest_value"  id = "interest4"/>
+            <input type = "radio" name = "interest_value"  id = "interest4" value="Not Very Interested" onChange={this.handleChange}/>
             <label for="interest4">Not Very Interested</label><br></br>
-            <input type = "radio" name = "interest_value"  id = "interest5"/>
+            <input type = "radio" name = "interest_value"  id = "interest5" value="Not Interested" onChange={this.handleChange}/>
             <label for="interest5">Not Interested</label><br></br>
             <input type="button" class="nextButton" onClick = {nextQuestion} value="Submit"/>
             </form>
