@@ -31,7 +31,7 @@ class App extends React.Component{
     return (
         <div class = "Container">
         <link href = "App.css" rel = "stylesheet"/>
-        <h1>
+        <h1 className="header">
             Dorm Quiz
         </h1>
         <div id = "quiz-container" class = "hide">
@@ -47,7 +47,7 @@ class App extends React.Component{
             <label for="interest4">Not Very Interested</label><br></br>
             <input type = "radio" name = "interest_value"  id = "interest5"/>
             <label for="interest5">Not Interested</label><br></br>
-            <input type="button"  onClick = {nextQuestion} value="Submit"/>
+            <input type="button" class="nextButton" onClick = {nextQuestion} value="Submit"/>
             </form>
         </div>
         <div class = "start">
