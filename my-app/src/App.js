@@ -33,6 +33,7 @@ class App extends React.Component{
   }
   handleChange(event) {    this.setState({value: event.target.value});  }
   handleSubmit(event) {
+    event.preventDefault();
     switch (this.state.value) {
         case "Highly Interested":
             scoreAdder = 2;
@@ -50,11 +51,12 @@ class App extends React.Component{
             scoreAdder = -2;
         break;
         default:
-            console.log("error");
+            alert("Please submit an answer, then try again.");
+            return;
     }
     this.changeScores();
+    nextQuestion();
     alert('An answer was submitted: ' + this.state.value);
-    event.preventDefault();
   }
   render() {
     return (
@@ -76,7 +78,7 @@ class App extends React.Component{
             <label for="interest4">Not Very Interested</label><br></br>
             <input type = "radio" name = "interest_value"  id = "interest5" value="Not Interested" onChange={this.handleChange}/>
             <label for="interest5">Not Interested</label><br></br>
-            <input type="submit"  onClick = {nextQuestion} value="Submit"/>
+            <input type="submit" value="Submit"/>
             </form>
         </div>
         <div class = "start">
