@@ -5,7 +5,24 @@ import questions from './questions.js';
 import dorms from './dorms.js';
 
 class App extends React.Component{
-  questionIndex = null;
+    changeScores = (() => {
+        console.log(dorms);
+    for(let i = 0; i<dorms.length; i++){
+        for(let j = 0; j < questions[i].pro.length; j++){
+            if(dorms[i].dorm === questions[i].pro[j]){
+                dorms[i].score += scoreAdder;
+            }
+        }
+        for(let k = 0; k < questions[i].pro.length; k++){
+            if(dorms[i].dorm === questions[i].pro[k]){
+                dorms[i].score -= scoreAdder;
+            }
+        }
+    }
+    for(let a = 0; a < dorms.length; a++){
+        console.log(dorms[a].score + " ");
+    }
+})
   constructor(props) {
     super(props);
     this.state = {value: ''};
@@ -33,6 +50,7 @@ class App extends React.Component{
         default:
             console.log("error");
     }
+    this.changeScores();
     alert('An answer was submitted: ' + this.state.value);
     event.preventDefault();
   }
@@ -56,7 +74,7 @@ class App extends React.Component{
             <label for="interest4">Not Very Interested</label><br></br>
             <input type = "radio" name = "interest_value"  id = "interest5" value="Not Interested" onChange={this.handleChange}/>
             <label for="interest5">Not Interested</label><br></br>
-            <input type="submit"  onClick = {next} value="Submit"/>
+            <input type="submit"  onClick = {nextQuestion} value="Submit"/>
             </form>
         </div>
         <div class = "start">
@@ -90,25 +108,8 @@ function begin(){
     startQuiz();
     nextQuestion();
 }
-function next(){
+/*function next(){
     changeScores();
     nextQuestion();
-}
-function changeScores(){
-    for(let i = 0; i<dorms.length; i++){
-        for(let j = 0; j<questions[i].pro.length;j++){
-            if(dorms[i].dorm === questions[i].pro[j]){
-                dorms[i].score += scoreAdder;
-            }
-        }
-        for(let k = 0; k<questions[i].pro.length;k++){
-            if(dorms[i].dorm === questions[i].pro[k]){
-                dorms[i].score -= scoreAdder;
-            }
-        }
-    }
-    for(let a = 0; a<dorms.length;a++){
-        console.log(dorms[a].score + " ");
-    }
-}
+}*/
 export default App;
