@@ -10,3 +10,20 @@ body{
 	align-items: center;
 	background-color: skyblue;
 }
+
+.Container {
+	align-items:center;
+	width: 1000px;
+	max-width: 80%;
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px;
+}
+.start-button {
+	font-size: 12rem;
+	font-weight: bold;
+	padding: 20px;
+}
+.hide {
+	display: none;
+}
