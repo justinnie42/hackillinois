@@ -47,7 +47,7 @@ class App extends React.Component{
             <label for="interest4">Not Very Interested</label><br></br>
             <input type = "radio" name = "interest_value"  id = "interest5"/>
             <label for="interest5">Not Interested</label><br></br>
-            <input type="button" value="Submit"/>
+            <input type="button"  onClick = {nextQuestion} value="Submit"/>
             </form>
         </div>
         <div class = "start">
