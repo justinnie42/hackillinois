@@ -31,6 +31,12 @@ class App extends React.Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  resetButtons(){
+    var ele = document.getElementsByName("interest_value");
+    for(var i=0;i<ele.length;i++)
+      ele[i].checked = false;
+    this.setState({value: ""});
+  }
   handleChange(event) {    this.setState({value: event.target.value});  }
   handleSubmit(event) {
     event.preventDefault();
@@ -55,6 +61,7 @@ class App extends React.Component{
             return;
     }
     this.changeScores();
+    this.resetButtons();
     nextQuestion();
     alert('An answer was submitted: ' + this.state.value);
   }
