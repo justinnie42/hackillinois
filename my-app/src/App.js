@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import questions from './questions.js';
+import dorms from './dorms.js';
 
 class App extends React.Component{
   questionIndex = null;
@@ -10,20 +11,28 @@ class App extends React.Component{
     this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    //this.startQuiz = this.startQuiz.bind(this);
-    /*this.nextQuestion = this.nextQuestion.bind(this);
-    this.showQuestion = this.showQuestion.bind(this);*/
-  }
-  startQuiz(e){
-    console.log("start");
-    const startButton = document.getElementById('start-button');
-    const quizContainer = document.getElementById('quiz-container');
-    startButton.classList.add("hide");
-    quizContainer.classList.remove("hide");
-    questionIndex = 0;
   }
   handleChange(event) {    this.setState({value: event.target.value});  }
   handleSubmit(event) {
+    switch (this.state.value) {
+        case "Highly Interested":
+            scoreAdder = 2;
+        break;
+        case "Somewhat Interested":
+            scoreAdder = 1;
+        break;
+        case "Neutral":
+            scoreAdder = 0;
+        break;
+        case "Not Very Interested":
+            scoreAdder = -1;
+        break;
+        case "Not Interested":
+            scoreAdder = -2;
+        break;
+        default:
+            console.log("error");
+    }
     alert('An answer was submitted: ' + this.state.value);
     event.preventDefault();
   }
@@ -47,7 +56,7 @@ class App extends React.Component{
             <label for="interest4">Not Very Interested</label><br></br>
             <input type = "radio" name = "interest_value"  id = "interest5" value="Not Interested" onChange={this.handleChange}/>
             <label for="interest5">Not Interested</label><br></br>
-            <input type="submit"  onClick = {nextQuestion} value="Submit"/>
+            <input type="submit"  onClick = {next} value="Submit"/>
             </form>
         </div>
         <div class = "start">
@@ -58,6 +67,7 @@ class App extends React.Component{
   }
 }
 let questionIndex;
+let scoreAdder; //range from -2 to 2
 function nextQuestion(){
     console.log(questions[questionIndex]);
     showQuestion(questions[questionIndex]);
@@ -74,43 +84,31 @@ function startQuiz(){
     startButton.classList.add("hide");
     quizContainer.classList.remove("hide");
     questionIndex = 0;
+    scoreAdder = 0;
   }
 function begin(){
     startQuiz();
     nextQuestion();
 }
+function next(){
+    changeScores();
+    nextQuestion();
+}
+function changeScores(){
+    for(let i = 0; i<dorms.length; i++){
+        for(let j = 0; j<questions[i].pro.length;j++){
+            if(dorms[i].dorm === questions[i].pro[j]){
+                dorms[i].score += scoreAdder;
+            }
+        }
+        for(let k = 0; k<questions[i].pro.length;k++){
+            if(dorms[i].dorm === questions[i].pro[k]){
+                dorms[i].score -= scoreAdder;
+            }
+        }
+    }
+    for(let a = 0; a<dorms.length;a++){
+        console.log(dorms[a].score + " ");
+    }
+}
 export default App;
-/*<link href = "App.css" rel = "stylesheet"/>
-  function startQuiz(e){
-    console.log("start");
-    const startButton = document.getElementById('start-button');
-    const quizContainer = document.getElementById('quiz-container');
-    startButton.classList.add("hide");
-    quizContainer.classList.remove("hide");
-  }
-  return (
-    <div class = "Container">
-        <h1>
-            Dorm Quiz
-        </h1>
-        <div id = "quiz-container" class = "hide">
-            <div id = "question">Question</div><br></br>
-            <form>
-            <input type = "radio" name = "interest_value" id = "interest1"/>
-            <label for="interest1">Highly Interested</label><br></br>
-            <input type = "radio" name = "interest_value" id = "interest2"/>
-            <label for="interest2">Somewhat Interested</label><br></br>
-            <input type = "radio" name = "interest_value" id = "interest3"/>
-            <label for="interest3">Neutral</label><br></br>
-            <input type = "radio" name = "interest_value"  id = "interest4"/>
-            <label for="interest4">Not Very Interested</label><br></br>
-            <input type = "radio" name = "interest_value"  id = "interest5"/>
-            <label for="interest5">Not Interested</label><br></br>
-            <input type="button" value="Submit"/>
-            </form>
-        </div>
-        <div class = "start">
-            <button id = "start-button" onClick = {startQuiz} class = "start-button">Start</button>
-        </div>
-    </div>
-  );*/
