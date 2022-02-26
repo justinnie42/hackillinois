@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import questions from './questions.js';
@@ -13,12 +12,12 @@ class App extends React.Component{
         for(let j = 0; j < questions[i].pro.length; j++){
             console.log(dorms[i].dorm);
             console.log(questions[i].pro[j]);
-            if(dorms[i].dorm == questions[i].pro[j].dorm){
+            if(dorms[i].dorm === questions[i].pro[j].dorm){
                 dorms[i].score += scoreAdder;
             }
         }
         for(let k = 0; k < questions[i].con.length; k++){
-            if(dorms[i].dorm == questions[i].con[k].dorm){
+            if(dorms[i].dorm === questions[i].con[k].dorm){
                 dorms[i].score -= scoreAdder;
             }
         }
@@ -36,6 +35,14 @@ class App extends React.Component{
     for(var i=0;i<ele.length;i++)
       ele[i].checked = false;
     this.setState({value: ""});
+  }
+  showError(){
+    const error = document.getElementById("no submit error");
+    error.classList.remove("hide");
+  }
+  hideError(){
+    const error = document.getElementById("no submit error");
+    error.classList.add("hide");
   }
   handleChange(event) {    this.setState({value: event.target.value});  }
   handleSubmit(event) {
@@ -57,13 +64,14 @@ class App extends React.Component{
             scoreAdder = -2;
         break;
         default:
-            alert("Please submit an answer, then try again.");
+            this.showError();
             return;
     }
     this.changeScores();
     this.resetButtons();
     nextQuestion();
-    alert('An answer was submitted: ' + this.state.value);
+    this.hideError();
+    //alert('An answer was submitted: ' + this.state.value);
   }
   render() {
     return (
@@ -86,6 +94,7 @@ class App extends React.Component{
             <input type = "radio" name = "interest_value"  id = "interest5" value="Not Interested" onChange={this.handleChange}/>
             <label for="interest5">Not Interested</label><br></br>
             <input type="submit" value="Submit"/>
+            <div id = "no submit error" style={{ color: 'red' }} class = "hide">Please submit an answer, then try again.</div>
             </form>
         </div>
         <div class = "start">
