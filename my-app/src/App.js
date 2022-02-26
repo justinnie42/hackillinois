@@ -7,21 +7,23 @@ import dorms from './dorms.js';
 class App extends React.Component{
     changeScores = (() => {
         console.log(dorms);
-    for(let i = 0; i<dorms.length; i++){
+        console.log(questions);
+    for(let i = 0; i < dorms.length; i++){
+        console.log(dorms[i].score);
         for(let j = 0; j < questions[i].pro.length; j++){
-            if(dorms[i].dorm === questions[i].pro[j]){
+            console.log(dorms[i].dorm);
+            console.log(questions[i].pro[j]);
+            if(dorms[i].dorm == questions[i].pro[j].dorm){
                 dorms[i].score += scoreAdder;
             }
         }
-        for(let k = 0; k < questions[i].pro.length; k++){
-            if(dorms[i].dorm === questions[i].pro[k]){
+        for(let k = 0; k < questions[i].con.length; k++){
+            if(dorms[i].dorm == questions[i].con[k].dorm){
                 dorms[i].score -= scoreAdder;
             }
         }
     }
-    for(let a = 0; a < dorms.length; a++){
-        console.log(dorms[a].score + " ");
-    }
+    console.log(dorms[0].score);
 })
   constructor(props) {
     super(props);
