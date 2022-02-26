@@ -80,6 +80,11 @@ class App extends React.Component{
         <h1 className="header">
             Dorm Quiz
         </h1>
+        <div id = "results-screen" class = "hide">
+          <h3>Results:</h3>
+          <h5>ISR (placeholder)</h5>
+          <img src={process.env.PUBLIC_URL+"ISR.jpg"} />
+        </div>
         <div id = "quiz-container" class = "hide">
             <div id = "question">Question</div><br></br>
             <form onSubmit={this.handleSubmit}>
@@ -107,9 +112,17 @@ class App extends React.Component{
 let questionIndex;
 let scoreAdder; //range from -2 to 2
 function nextQuestion(){
+  if(questionIndex === questions.length){
+    const results = document.getElementById("results-screen");
+    const quizContainer = document.getElementById("quiz-container");
+
+    quizContainer.classList.add("hide");
+    results.classList.remove("hide");
+  } else {
     console.log(questions[questionIndex]);
     showQuestion(questions[questionIndex]);
     questionIndex++;
+  }
   }
 function showQuestion(question){
     const questionText = document.getElementById('question');
