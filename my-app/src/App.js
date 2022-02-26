@@ -40,7 +40,7 @@ class App extends React.Component{
     return (
         <div class = "Container">
         <link href = "App.css" rel = "stylesheet"/>
-        <h1>
+        <h1 className="header">
             Dorm Quiz
         </h1>
         <div id = "quiz-container" class = "hide">
