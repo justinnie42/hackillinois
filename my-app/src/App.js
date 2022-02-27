@@ -36,14 +36,7 @@ class App extends React.Component{
       ele[i].checked = false;
     this.setState({value: ""});
   }
-  showError(){
-    const error = document.getElementById("no submit error");
-    error.classList.remove("hide");
-  }
-  hideError(){
-    const error = document.getElementById("no submit error");
-    error.classList.add("hide");
-  }
+  
   handleChange(event) {    this.setState({value: event.target.value});  }
   handleSubmit(event) {
     event.preventDefault();
@@ -64,13 +57,13 @@ class App extends React.Component{
             scoreAdder = -2;
         break;
         default:
-            this.showError();
+            showError();
             return;
     }
     this.changeScores();
     this.resetButtons();
+    hideError();
     nextQuestion();
-    this.hideError();
     //alert('An answer was submitted: ' + this.state.value);
   }
   render() {
@@ -99,7 +92,7 @@ class App extends React.Component{
             <input type = "radio" name = "interest_value"  id = "interest5" value="Not Interested" onChange={this.handleChange}/>
             <label for="interest5">Not Interested</label><br></br>
             <input type="submit" value="Submit"/>
-            <div id = "no submit error" style={{ color: 'red' }} class = "hide">Please submit an answer, then try again.</div>
+            <div id = "no submit error" style={{ color: 'red' }}></div>
             </form>
         </div>
         <div class = "start">
@@ -145,6 +138,7 @@ function startQuiz(){
   }
 function begin(){
     startQuiz();
+    hideError();
     nextQuestion();
 }
 function calculateScore(){
@@ -155,5 +149,13 @@ function calculateScore(){
         }
     }
     return dorms[j];
+}
+function showError(){
+  const error = document.getElementById("no submit error");
+  error.innerText = "Please submit an answer, then try again."
+}
+function hideError(){
+  const error = document.getElementById("no submit error");
+  error.innerText = "\n"
 }
 export default App;
