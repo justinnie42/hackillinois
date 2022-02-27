@@ -81,8 +81,8 @@ class App extends React.Component{
             University of Illinois at Urbana-Champaign Dorm Questionnaire
         </h1>
         <div id = "results-screen" class = "hide">
-          <h3>Results:</h3>
-          <h5 id = "dormName">ISR (placeholder)</h5>
+          <h2>You belong at:</h2>
+          <h2 id = "dormName">ISR (placeholder)</h2>
           <img id="result-image" src=""/>
         </div>
         <div id = "quiz-container" class = "hide">
