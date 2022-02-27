@@ -82,7 +82,7 @@ class App extends React.Component{
         </h1>
         <div id = "results-screen" class = "hide">
           <h3>Results:</h3>
-          <h5>ISR (placeholder)</h5>
+          <h5 id = "dormName">ISR (placeholder)</h5>
           <img src={process.env.PUBLIC_URL+"ISR.jpg"} />
         </div>
         <div id = "quiz-container" class = "hide">
@@ -115,6 +115,8 @@ function nextQuestion(){
   if(questionIndex === questions.length){
     const results = document.getElementById("results-screen");
     const quizContainer = document.getElementById("quiz-container");
+    const finalDorm = document.getElementById("dormName");
+    finalDorm.innerText = calculateScore();
 
     quizContainer.classList.add("hide");
     results.classList.remove("hide");
@@ -141,8 +143,13 @@ function begin(){
     startQuiz();
     nextQuestion();
 }
-/*function next(){
-    changeScores();
-    nextQuestion();
-}*/
+function calculateScore(){
+    let j = 0;
+    for(let i = 0; i<dorms.length;i++){
+        if(dorms[i].score > dorms[j].score){
+            j = i;
+        }
+    }
+    return dorms[j].dorm;
+}
 export default App;

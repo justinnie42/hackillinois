@@ -6,7 +6,8 @@ const questions = [
 		],
 		con: [
 			{dorm: "FAR/PAR"},
-			{dorm: "LAR/Allen"}
+			{dorm: "LAR/Allen"},
+			{dorm: "Busey-Evans"}
 		]
 	},
 	{
@@ -17,7 +18,6 @@ const questions = [
 			{dorm:"ISR"}
 		],
 		con: [
-			{dorm: "FAR/PAR"},
 			{dorm: "Busey-Evans"}
 		]
 	},
@@ -25,7 +25,8 @@ const questions = [
 		question:"Do you like going to the gym?",
 		pro: [
 			{dorm:"Six-Pack"},
-			{dorm:"FAR/PAR"}
+			{dorm:"FAR/PAR"},
+			{dorm: "ISR"},
 		],
 		con: [
 			{dorm: "LAR/Allen"}
@@ -45,7 +46,8 @@ const questions = [
 	{
 		question:"Do you want late night dining?",
 		pro: [
-			{dorm:"FAR/PAR"}
+			{dorm:"FAR/PAR"},
+			{dorm:"Six-Pack"}
 		],
 		con: [
 			{dorm: "Busey-Evans"},
@@ -94,6 +96,7 @@ const questions = [
 		],
 		con: [
 			{dorm:"FAR/PAR"},
+			{dorm:"LAR/Allen"}
 		]
 	}
 ]
