@@ -78,7 +78,7 @@ class App extends React.Component{
         <div class = "Container">
         <link href = "App.css" rel = "stylesheet"/>
         <h1 className="header">
-            Dorm Quiz
+            University of Illinois at Urbana-Champaign Dorm Questionnaire
         </h1>
         <div id = "results-screen" class = "hide">
           <h3>Results:</h3>
